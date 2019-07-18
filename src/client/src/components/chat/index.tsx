@@ -42,7 +42,7 @@ export function Chat() {
   return loading ? (
     <Spinner />
   ) : (
-    <div className="chat">
+    <div className='chat'>
       <ChatHeader />
       <MessageList />
       <MessageInput />

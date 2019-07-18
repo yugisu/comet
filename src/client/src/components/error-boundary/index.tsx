@@ -6,7 +6,7 @@ type State = {
   error: Error | string | null;
 };
 
-export class ErrorBoundary extends React.Component<any, State> {
+export class ErrorBoundary extends React.Component<{}, State> {
   state: State = {
     error: null,
   };
@@ -22,10 +22,10 @@ export class ErrorBoundary extends React.Component<any, State> {
 
     if (error) {
       return (
-        <div className="error-boundary">
-          <h1 className="error-boundary__title">
+        <div className='error-boundary'>
+          <h1 className='error-boundary__title'>
             <span>Uh oh! Something went wrong!</span>{' '}
-            <span role="img" aria-hidden="true">
+            <span role='img' aria-hidden='true'>
               💥
             </span>
           </h1>

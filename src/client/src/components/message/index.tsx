@@ -8,9 +8,9 @@ import './style.scss';
 type Props = {
   message: MessageType;
   self?: boolean;
-  onDelete: (id: string) => any;
-  onEditing: (msg: MessageType) => any;
-  onLike: (id: string) => any;
+  onDelete: (id: string) => void;
+  onEditing: (msg: MessageType) => void;
+  onLike: (id: string) => void;
 };
 
 export function Message({ message, self = false, ...props }: Props) {

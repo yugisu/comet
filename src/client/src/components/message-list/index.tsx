@@ -53,7 +53,7 @@ export function MessageList(props: Props) {
       });
       if (currentDate !== messageDate) {
         res.unshift(
-          <div className="message-list__daystamp" key={`daystamp-${messageDate}`}>
+          <div className='message-list__daystamp' key={`daystamp-${messageDate}`}>
             <span>{messageDate}</span>
           </div>
         );
@@ -65,7 +65,7 @@ export function MessageList(props: Props) {
   };
 
   return (
-    <div className="message-list" ref={scrollRef}>
+    <div className='message-list' ref={scrollRef}>
       {renderMessages()}
     </div>
   );

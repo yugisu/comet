@@ -27,11 +27,11 @@ export function ChatHeader(props: Props) {
   const lastActivity = useSelector(selectLastActivity);
 
   return (
-    <header className="chat-header">
-      <h3 className="chat-header__name">{name}</h3>
-      <span className="chat-header__user-amount">{userAmount} users</span>
-      <span className="chat-header__message-amount">{messageAmount} messages</span>
-      <span className="chat-header__last-active">last activity: {lastActivity}</span>
+    <header className='chat-header'>
+      <h3 className='chat-header__name'>{name}</h3>
+      <span className='chat-header__user-amount'>{userAmount} users</span>
+      <span className='chat-header__message-amount'>{messageAmount} messages</span>
+      <span className='chat-header__last-active'>last activity: {lastActivity}</span>
     </header>
   );
 }

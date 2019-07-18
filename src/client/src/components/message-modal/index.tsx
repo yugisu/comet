@@ -39,26 +39,26 @@ export function MessageModal() {
   };
 
   return (
-    <div className="modal-wrapper" onClick={onBGClick}>
-      <div className="modal">
-        <header className="modal__header">
+    <div className='modal-wrapper' onClick={onBGClick} aria-hidden>
+      <div className='modal'>
+        <header className='modal__header'>
           <h2>Edit message</h2>
         </header>
-        <div className="modal__content">
+        <div className='modal__content'>
           <textarea
-            className="modal__text"
+            className='modal__text'
             value={text}
             onChange={onTextInput}
             rows={10}
           />
-          <button className="modal__close" onClick={closeModal}>
-            <span role="img" aria-hidden>
+          <button className='modal__close' onClick={closeModal}>
+            <span role='img' aria-hidden>
               ❌
             </span>
           </button>
-          <button className="modal__submit" onClick={onSubmit}>
+          <button className='modal__submit' onClick={onSubmit}>
             <span>Submit</span>{' '}
-            <span role="img" aria-hidden>
+            <span role='img' aria-hidden>
               ✔️
             </span>
           </button>
