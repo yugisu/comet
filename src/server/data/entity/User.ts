@@ -9,10 +9,11 @@ import {
 import { Length, IsIn } from 'class-validator';
 import bcrypt from 'bcrypt';
 
+import { User as UserT } from '../../../shared/types/user.interface';
 import { Message } from './Message';
 
 @Entity({ name: 'user' })
-export class User {
+export class User implements UserT {
   @PrimaryGeneratedColumn()
   id!: number;
 
@@ -48,10 +49,10 @@ export class User {
   messages!: Message[];
 
   @CreateDateColumn()
-  createdAt!: any;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt!: any;
+  updatedAt!: Date;
 
   public hashPassword() {
     this.password = bcrypt.hashSync(this.password, 8);

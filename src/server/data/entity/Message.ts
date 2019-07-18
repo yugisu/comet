@@ -9,9 +9,10 @@ import {
 } from 'typeorm';
 
 import { User } from './User';
+import { MessageT } from '../../../shared/types/message.interface';
 
 @Entity()
-export class Message {
+export class Message implements MessageT {
   @PrimaryGeneratedColumn()
   id!: number;
 
@@ -29,8 +30,8 @@ export class Message {
   username!: string;
 
   @CreateDateColumn()
-  createdAt!: any;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt!: any;
+  updatedAt!: Date;
 }
