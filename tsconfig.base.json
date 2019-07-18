@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "lib": ["esnext"],
+    "strict": true,
+    "allowJs": true,
+
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+
+    "outDir": "build",
+    "sourceMap": true
+  }
+}

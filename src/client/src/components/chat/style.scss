@@ -1,0 +1,15 @@
+.chat {
+  height: calc(100vh - 4rem);
+
+  justify-self: center;
+
+  padding: 0 4rem 2rem;
+  display: grid;
+  grid:
+    'header' auto
+    'message-list' 1fr
+    'message-input' auto /
+    minmax(60%, 50rem);
+
+  border-radius: 0.5rem 0.5rem 0 0;
+}

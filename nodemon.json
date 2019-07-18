@@ -1,0 +1,5 @@
+{
+  "watch": ["src/server", "src/shared"],
+  "ext": "ts",
+  "exec": "ts-node --project ./src/server/tsconfig.json --require dotenv/config --require tsconfig-paths/register src/server/index.ts"
+}

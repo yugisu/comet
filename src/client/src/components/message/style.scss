@@ -1,0 +1,96 @@
+.message {
+  position: relative;
+  max-width: 25rem;
+
+  padding: 0.5rem;
+  display: grid;
+  grid:
+    'avatar user ...' auto
+    'avatar text time' 1fr /
+    2rem 1fr auto;
+  column-gap: 0.5rem;
+
+  background: white;
+  border-radius: 0.5rem 0.5rem 0.5rem 0;
+
+  &__tooltip {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateX(100%);
+
+    height: 100%;
+    width: fit-content;
+
+    padding: 0 0.2rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap-reverse;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    transition: opacity 0.16s 0.16s;
+
+    > button {
+      margin: 0.2rem;
+      padding: 0;
+
+      background: transparent;
+
+      cursor: pointer;
+      border: none;
+      border-radius: 50%;
+    }
+  }
+
+  &__avatar {
+    grid-area: avatar;
+
+    align-self: center;
+    border-radius: 50%;
+  }
+
+  &__user {
+    grid-area: user;
+
+    font-weight: bold;
+    font-size: 0.8rem;
+  }
+
+  &__text {
+    grid-area: text;
+    max-width: 21rem;
+
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  &__time {
+    grid-area: time;
+
+    color: rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    font-size: 0.6rem;
+    align-self: end;
+  }
+
+  &:hover {
+
+    .message__tooltip {
+      opacity: 1;
+    }
+  }
+
+  &--self {
+    display: grid;
+    grid: 'text time';
+
+    border-radius: 0.5rem 0.5rem 0 0.5rem;
+
+    .message__tooltip {
+      left: 0;
+      transform: translateX(-100%);
+    }
+  }
+}

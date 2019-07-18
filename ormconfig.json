@@ -1,0 +1,19 @@
+{
+  "type": "postgres",
+  "host": "dumbo.db.elephantsql.com",
+  "port": 5432,
+  "username": "nrdluywd",
+  "password": "ii1nZoaF2DpgRJrykOUfvPesLUHn3DMv",
+  "database": "nrdluywd",
+  "synchronize": true,
+  "migrationsRun": true,
+  "logging": false,
+  "entities": ["src/server/data/entity/**/*.ts"],
+  "migrations": ["src/server/data/migration/**/*.ts"],
+  "subscribers": ["src/server/data/subscriber/**/*.ts"],
+  "cli": {
+    "entitiesDir": "src/server/data/entity",
+    "migrationsDir": "src/server/data/migration",
+    "subscribersDir": "src/server/data/subscriber"
+  }
+}

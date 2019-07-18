@@ -1,0 +1,10 @@
+.app {
+  min-height: 100vh;
+
+  display: grid;
+  grid:
+    'header' auto
+    'chat' 1fr /
+    100%;
+  gap: 1rem;
+}
