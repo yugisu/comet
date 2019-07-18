@@ -7,32 +7,13 @@ import cookieParser from 'cookie-parser';
 import { createConnection } from 'typeorm';
 
 import router from '~routes';
-import { Message } from '~data/entity/Message';
-import { User } from '~data/entity/User';
 
 createConnection()
-  .then(async (connection) => {
+  .then(() => {
     console.log('> Database connected.');
 
     const app = express();
     const server = createServer(app);
-
-    console.log(await connection.manager.find(User));
-
-    const user = new User();
-    user.username = 'cometman';
-    user.password = 'tothespace';
-    user.hashPassword();
-    user.role = 'ADMIN';
-
-    const initMessage = new Message();
-    initMessage.body = 'Hello everyone!';
-    initMessage.username = 'cometman';
-
-    console.log(await connection.manager.save(user));
-    console.log(await connection.manager.save(initMessage));
-
-    console.log(await connection.manager.find(Message));
 
     // Defining middlewares & stuff
     app
