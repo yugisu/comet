@@ -41,7 +41,18 @@ function* loginUser(action: AuthUserTrigger) {
     }
   } catch (err) {
     console.log(err, token);
-    yield put(authUser.failure(token ? {} : { message: err }));
+    yield put(
+      authUser.failure(
+        token
+          ? {}
+          : {
+              message:
+                action.payload && action.payload.type === 'register'
+                  ? 'Failed to register. Maybe entered username is taken?'
+                  : 'Failed to login. Check entered data.',
+            }
+      )
+    );
     localStorage.removeItem('jwt');
   } finally {
     yield put(authUser.fulfill());
