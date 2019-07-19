@@ -12,8 +12,7 @@
   "scripts": {
     "start": "ts-node -r dotenv/config -r tsconfig-paths/register -p ./src/server/tsconfig.json ./src/server",
     "dev": "concurrently \"parcel watch -d src/client/dist src/client/src/index.html\" \"nodemon\"",
-    "build": "parcel build -d src/client/dist src/client/src/index.html --no-source-maps --log-level 1",
-    "migration:run": ""
+    "build": "parcel build -d src/client/dist src/client/src/index.html --no-source-maps --log-level 1"
   },
   "license": "ISC",
   "dependencies": {
@@ -26,6 +25,8 @@
     "@types/passport": "^1.0.0",
     "@types/passport-jwt": "^3.0.1",
     "@types/pg": "^7.4.14",
+    "@types/react-router-dom": "^4.3.4",
+    "axios": "^0.19.0",
     "bcrypt": "^3.0.6",
     "class-validator": "^0.9.1",
     "cookie-parser": "^1.4.4",
@@ -41,8 +42,10 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.1",
     "redux": "^4.0.4",
-    "redux-thunk": "^2.3.0",
+    "redux-saga": "^1.0.5",
+    "redux-saga-routines": "^3.2.0",
     "reflect-metadata": "^0.1.13",
     "reselect": "^4.0.0",
     "ts-node": "^8.3.0",
@@ -54,15 +57,19 @@
     "@types/react": "16.8.23",
     "@types/react-dom": "16.8.4",
     "@types/react-redux": "^7.1.1",
+    "@types/redux-devtools": "^3.0.47",
+    "@types/redux-saga-routines": "^3.1.0",
     "@typescript-eslint/eslint-plugin": "^1.12.0",
     "@typescript-eslint/parser": "^1.12.0",
     "concurrently": "^4.1.1",
-    "eslint": "^6.0.1",
+    "eslint": "^5.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.2",
     "eslint-plugin-react-hooks": "^1.6.1",
     "nodemon": "^1.19.1",
     "parcel": "^1.12.3",
+    "redux-devtools": "^3.5.0",
+    "redux-devtools-extension": "^2.13.8",
     "sass": "^1.22.3"
   }
 }

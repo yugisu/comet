@@ -1,23 +1,30 @@
 .spinner {
+  --size: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
 
+  &--small {
+    --size: 1rem;
+  }
+
   &::before {
     content: '☄️';
-    height: 2rem;
-    width: 2rem;
+    height: var(--size);
+    width: var(--size);
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    font-size: 2rem;
-    line-height: 2rem;
+    font-size: var(--size);
+    line-height: var(--size);
 
     transform-origin: 0 0;
 
-    animation: spin 1s 100ms infinite;
+    opacity: 0;
+
+    animation: spin 1s 0.64s infinite, fade-in 0.32s 0.64s forwards;
   }
 }
 

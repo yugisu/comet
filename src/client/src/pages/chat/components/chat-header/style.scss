@@ -1,0 +1,30 @@
+.chat-header {
+  width: 100%;
+
+  display: grid;
+  grid:
+    'name usr-am msg-am last-act' 100% /
+    auto auto 1fr auto;
+  gap: 1rem;
+  align-items: center;
+
+  &__name {
+    grid-area: name;
+  }
+
+  &__user-amount {
+    grid-area: usr-am;
+  }
+
+  &__message-amount {
+    grid-area: msg-am;
+  }
+
+  &__last-active {
+    grid-area: last-act;
+
+    color: rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+    font-size: 0.8rem;
+  }
+}
