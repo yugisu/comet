@@ -10,7 +10,8 @@ class AuthController {
   static login = async (req: Request, res: Response) => {
     const { username, password } = req.body;
     if (!(username && password)) {
-      res.status(400).send('Username or password empty!');
+      res.status(400).send({ isAuth: false, message: 'Username or password empty!' });
+      return;
     }
 
     const userRepository = getRepository(User);
@@ -18,12 +19,12 @@ class AuthController {
     try {
       user = await userRepository.findOneOrFail({ where: { username } });
     } catch (error) {
-      res.status(401).send('No such user!');
+      res.status(401).send({ isAuth: false, message: 'No such user!' });
       return;
     }
 
     if (!user.checkUnsafePassword(password)) {
-      res.status(401).send('Wrong password!');
+      res.status(401).send({ isAuth: false, message: 'Wrong password!' });
       return;
     }
 
@@ -33,7 +34,35 @@ class AuthController {
       { expiresIn: '10h' }
     );
 
-    res.send(token);
+    const { password: _, ...userToSend } = user;
+
+    res.send({ isAuth: true, token, user: userToSend });
+  };
+
+  static checkJWT = async (req: Request, res: Response) => {
+    const token = req.headers['auth'] as string;
+
+    if (token) {
+      try {
+        const jwtPayload = jwt.verify(token, config.jwtSecret);
+
+        if (typeof jwtPayload === 'object') {
+          const { userId } = jwtPayload as { userId: number; username: string };
+
+          const userRepository = getRepository(User);
+
+          const user = await userRepository.findOne(userId);
+
+          if (user) {
+            const { password: _, ...userToSend } = user;
+
+            res.send({ isAuth: true, token, user: userToSend });
+          }
+        }
+      } catch (error) {
+        return;
+      }
+    }
   };
 
   static register = async (req: Request, res: Response) => {

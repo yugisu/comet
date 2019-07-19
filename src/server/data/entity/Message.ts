@@ -9,10 +9,10 @@ import {
 } from 'typeorm';
 
 import { User } from './User';
-import { MessageT } from '../../../shared/types/message.interface';
+import { MessageType } from '../../../shared/types/message.interface';
 
 @Entity()
-export class Message implements MessageT {
+export class Message implements MessageType {
   @PrimaryGeneratedColumn()
   id!: number;
 

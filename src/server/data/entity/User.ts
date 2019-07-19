@@ -9,11 +9,11 @@ import {
 import { Length, IsIn } from 'class-validator';
 import bcrypt from 'bcrypt';
 
-import { User as UserT } from '../../../shared/types/user.interface';
+import { UserType } from '../../../shared/types/user.interface';
 import { Message } from './Message';
 
 @Entity({ name: 'user' })
-export class User implements UserT {
+export class User implements UserType {
   @PrimaryGeneratedColumn()
   id!: number;
 

@@ -1,11 +1,11 @@
-import { MessageT } from './message.interface';
+import { MessageType } from './message.interface';
 
-export interface User {
+export interface UserType {
   id: number;
   username: string;
   role: 'ADMIN' | 'USER';
   avatarLink: string;
-  messages: MessageT[];
+  messages: MessageType[];
   createdAt: Date;
   updatedAt: Date;
 }

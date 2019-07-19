@@ -17,7 +17,9 @@ class UserController {
     const id: number = req.params.id;
 
     const messageRepository = getRepository(Message);
-    const message = await messageRepository.findOne(id);
+    const message = await messageRepository.findOne(id, {
+      loadRelationIds: { relations: ['username'] },
+    });
 
     if (message) res.send(message);
     else res.status(404).send('Message not found');
@@ -53,8 +55,8 @@ class UserController {
     newMessage.username = username;
 
     try {
-      await messageRepository.save(newMessage);
-      res.status(204).send();
+      const message = await messageRepository.save(newMessage);
+      res.send(message);
     } catch (err) {
       res.status(500).send(err);
     }

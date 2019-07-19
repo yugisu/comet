@@ -1,4 +1,4 @@
-export interface MessageT {
+export interface MessageType {
   id: number;
   body: string;
   likes: number;
