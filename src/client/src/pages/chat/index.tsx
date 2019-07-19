@@ -3,7 +3,6 @@ import { createSelector } from 'reselect';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { StoreState } from '~store/types';
-import { toggleEditingMessage } from '~store/chat/actions';
 import { useKeypress } from '~hooks/use-key-press.hook';
 import { fetchMessages } from '~store/messages/routines';
 

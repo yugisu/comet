@@ -9,9 +9,10 @@ export type UserState = {
 
 export type AuthUserTrigger = {
   type: 'AUTH_USER/TRIGGER';
-  payload: {
+  payload?: {
     username: string;
     password: string;
+    type: 'login' | 'register';
   };
 };
 

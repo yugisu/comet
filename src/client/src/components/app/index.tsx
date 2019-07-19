@@ -8,7 +8,6 @@ import { Chat } from '~pages/chat';
 import { Auth } from '~pages/auth';
 import { ErrorBoundary } from '~components/error-boundary';
 import { AppHeader } from '~components/app-header';
-import { MessageModal } from '~components/message-modal';
 
 import './style.scss';
 
@@ -28,7 +27,6 @@ export function App() {
             <Route path='/auth'>{isAuth ? <Redirect to='/chat' /> : <Auth />}</Route>
           </Switch>
         </Router>
-        <MessageModal />
       </ErrorBoundary>
     </div>
   );

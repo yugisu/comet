@@ -13,7 +13,7 @@
   column-gap: 0.5rem;
 
   border-radius: 0.5rem 0.5rem 0 0;
-  animation: fade-in 0.32s;
+  animation: fade-in 0.32s forwards;
 
   &__header {
     grid-area: header;
@@ -35,6 +35,8 @@
 
     background: #f2f2f2;
     border-radius: 0 0 0.5rem 0.5rem;
+
+    display: grid;
   }
 
   &__tooltip {
@@ -52,5 +54,16 @@
     > *:not(:first-of-type) {
       margin-top: 0.25rem;
     }
+  }
+}
+
+@keyframes fade-in {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }

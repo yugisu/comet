@@ -99,7 +99,9 @@ class AuthController {
       { expiresIn: '10h' }
     );
 
-    res.send(token);
+    const { password: _, ...userToSend } = newUser;
+
+    res.send({ isAuth: true, token, user: userToSend });
   };
 }
 export default AuthController;

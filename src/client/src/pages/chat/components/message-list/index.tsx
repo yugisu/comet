@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { StoreState } from '~store/types';
 import { likeMessage, deleteMessage } from '~store/messages/actions';
-import { toggleEditingMessage } from '~store/chat/actions';
 import { useAutoScroll } from '~hooks/use-scroll-ref.hook';
 
 import { Message } from '~components/message';
@@ -25,10 +24,7 @@ export function MessageList(props: Props) {
   const currentUser = useSelector(selectCurrentUsername);
 
   const dispatch = useDispatch();
-  const actions = bindActionCreators(
-    { likeMessage, deleteMessage, toggleEditingMessage },
-    dispatch
-  );
+  const actions = bindActionCreators({ likeMessage, deleteMessage }, dispatch);
 
   const scrollRef = useAutoScroll(messages.length);
 
