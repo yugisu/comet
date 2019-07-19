@@ -48,6 +48,9 @@
 
   &__avatar {
     grid-area: avatar;
+    height: 2rem;
+    width: 2rem;
+    object-fit: cover;
 
     align-self: center;
     border-radius: 50%;
