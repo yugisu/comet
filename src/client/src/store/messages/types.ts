@@ -1,4 +1,4 @@
-import { MessageType } from '~types/message.type';
+import { MessageType } from '~../../shared/types/message.interface';
 
 export type MessagesState = {
   items: MessageType[];
@@ -6,21 +6,36 @@ export type MessagesState = {
   error: string | null;
 };
 
-type GetMessagesBegin = {
-  type: 'GET_MESSAGES_BEGIN';
+type GetMessagesTrigger = {
+  type: 'GET_MESSAGES/TRIGGER';
+};
+
+type GetMessagesRequest = {
+  type: 'GET_MESSAGES/REQUEST';
 };
 
 type GetMessagesSuccess = {
-  type: 'GET_MESSAGES_SUCCESS';
+  type: 'GET_MESSAGES/SUCCESS';
   payload: {
     messages: MessageType[];
   };
 };
 
 type GetMessagesFailure = {
-  type: 'GET_MESSAGES_FAILURE';
+  type: 'GET_MESSAGES/FAILURE';
   payload: {
     error: string;
+  };
+};
+
+type GetMessagesFullfill = {
+  type: 'GET_MESSAGES/FULLFILL';
+};
+
+export type SendMessage = {
+  type: 'SEND_MESSAGE';
+  payload: {
+    text: string;
   };
 };
 
@@ -31,10 +46,17 @@ type AddMessage = {
   };
 };
 
+export type PatchMessage = {
+  type: 'PATCH_MESSAGE';
+  payload: {
+    message: MessageType;
+  };
+};
+
 type EditMessage = {
   type: 'EDIT_MESSAGE';
   payload: {
-    id: string;
+    id: number;
     message: string;
   };
 };
@@ -42,21 +64,23 @@ type EditMessage = {
 type LikeMessage = {
   type: 'LIKE_MESSAGE';
   payload: {
-    id: string;
+    id: number;
   };
 };
 
 type DeleteMessage = {
   type: 'DELETE_MESSAGE';
   payload: {
-    id: string;
+    id: number;
   };
 };
 
 export type MessagesAction =
-  | GetMessagesBegin
+  | GetMessagesTrigger
+  | GetMessagesRequest
   | GetMessagesSuccess
   | GetMessagesFailure
+  | GetMessagesFullfill
   | AddMessage
   | EditMessage
   | LikeMessage

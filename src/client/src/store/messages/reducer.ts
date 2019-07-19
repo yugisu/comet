@@ -13,25 +13,30 @@ export const messages: Reducer<MessagesState, MessagesAction> = (
   action
 ) => {
   switch (action.type) {
-    case 'GET_MESSAGES_BEGIN':
+    case 'GET_MESSAGES/TRIGGER':
       return {
         ...state,
         loading: true,
         error: null,
       };
 
-    case 'GET_MESSAGES_SUCCESS':
+    case 'GET_MESSAGES/SUCCESS':
       return {
         ...state,
         loading: false,
         items: action.payload.messages,
       };
 
-    case 'GET_MESSAGES_FAILURE':
+    case 'GET_MESSAGES/FAILURE':
+      return {
+        ...state,
+        error: action.payload.error,
+      };
+
+    case 'GET_MESSAGES/FULLFILL':
       return {
         ...state,
         loading: false,
-        error: action.payload.error,
       };
 
     case 'ADD_MESSAGE':
@@ -40,27 +45,27 @@ export const messages: Reducer<MessagesState, MessagesAction> = (
         items: [...state.items, action.payload.item],
       };
 
-    case 'EDIT_MESSAGE':
-      return {
-        ...state,
-        items: state.items.map((m) =>
-          m.id === action.payload.id ? { ...m, message: action.payload.message } : m
-        ),
-      };
+    // case 'EDIT_MESSAGE':
+    //   return {
+    //     ...state,
+    //     items: state.items.map((m) =>
+    //       m.id === action.payload.id ? { ...m, message: action.payload.message } : m
+    //     ),
+    //   };
 
-    case 'LIKE_MESSAGE':
-      return {
-        ...state,
-        items: state.items.map((m) =>
-          m.id === action.payload.id ? { ...m, liked: !m.liked } : m
-        ),
-      };
+    // case 'LIKE_MESSAGE':
+    //   return {
+    //     ...state,
+    //     items: state.items.map((m) =>
+    //       m.id === action.payload.id ? { ...m, liked: !m.liked } : m
+    //     ),
+    //   };
 
-    case 'DELETE_MESSAGE':
-      return {
-        ...state,
-        items: state.items.filter((m) => m.id !== action.payload.id),
-      };
+    // case 'DELETE_MESSAGE':
+    //   return {
+    //     ...state,
+    //     items: state.items.filter((m) => m.id !== action.payload.id),
+    //   };
 
     default:
       return state;

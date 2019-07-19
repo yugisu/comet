@@ -57,9 +57,15 @@ class AuthController {
             const { password: _, ...userToSend } = user;
 
             res.send({ isAuth: true, token, user: userToSend });
+            return;
           }
         }
+
+        res.status(401).send('Token failed');
       } catch (error) {
+        console.log('FAILED TO DECIPHER JWT');
+        res.status(401).send('Token failed');
+
         return;
       }
     }

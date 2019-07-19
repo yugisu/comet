@@ -1,12 +1,9 @@
-import { MessageType } from '../types/message.type';
+import { MessageType } from '~../../shared/types/message.interface';
+import { API } from './api.service';
 
-const getMessages = async () => {
+const getAll = async (): Promise<MessageType[]> => {
   try {
-    const response = await fetch('/api/messages');
-
-    if (!response.ok) throw response.statusText;
-
-    const messages: MessageType[] = await response.json();
+    const messages: MessageType[] = await API.getData('/api/messages');
 
     if (!Array.isArray(messages)) throw 'Fetched data is not an array of messages';
 
@@ -16,6 +13,21 @@ const getMessages = async () => {
   }
 };
 
+const getOneById = async (id: number): Promise<MessageType> => {
+  try {
+    const message: MessageType = await API.getData(`/api/messages/${id}`);
+
+    return message;
+  } catch (err) {
+    throw new Error(`Failed to get message #${id}: ${err}`);
+  }
+};
+
+const send = async (text: string): Promise<MessageType> =>
+  await API.sendData('/api/messages', { text });
+
 export const messageService = {
-  getMessages,
+  getAll,
+  getOneById,
+  send,
 };
