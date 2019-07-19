@@ -17,11 +17,11 @@ function* loginUser(action: AuthUserTrigger) {
     if (token) {
       response = yield call(API.sendData, '/auth', {});
     } else if (action.payload !== undefined) {
-      const { username, password, type } = action.payload;
-      response = yield call(type === 'login' ? authService.login : authService.register, {
-        username,
-        password,
-      });
+      const { type, ...credentials } = action.payload;
+      response = yield call(
+        type === 'login' ? authService.login : authService.register,
+        credentials
+      );
     } else {
       yield put(authUser.failure({}));
     }

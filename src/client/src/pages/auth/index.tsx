@@ -6,8 +6,9 @@ import { History } from 'history';
 import { StoreState } from '~store/types';
 import { authUser } from '~store/user/routines';
 
-import './style.scss';
 import { CardPage } from '~components/page-card';
+
+import './style.scss';
 
 type Credentials = {
   username: string;
@@ -31,6 +32,7 @@ export const Auth = withRouter(({ history }: Props) => {
   const [values, setValues] = useState<Credentials>({
     username: '',
     password: '',
+    avatarLink: '',
   });
 
   const onChange = (e: React.ChangeEvent) => {
@@ -70,6 +72,15 @@ export const Auth = withRouter(({ history }: Props) => {
             onChange={onChange}
             placeholder='Password'
           />
+          {!isLogin && (
+            <input
+              className='login-form__avatar'
+              value={values.avatarLink}
+              name='avatarLink'
+              onChange={onChange}
+              placeholder='Link to avatar'
+            />
+          )}
           <button className='login-form__submit' type='submit'>
             {isLogin ? 'Login' : 'Sign up'}
           </button>
