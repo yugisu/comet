@@ -22,7 +22,11 @@ const selectUsersAmount = createSelector(
 const selectLastActivity = createSelector(
   (state: StoreState) => state.messages,
   ({ items }) =>
-    items.length ? moment(items[items.length - 1].createdAt).fromNow() : 'never'
+    items.length
+      ? moment(items[items.length - 1].createdAt)
+          .add({ hours: 3 })
+          .fromNow()
+      : 'never'
 );
 
 export function ChatHeader(props: Props) {

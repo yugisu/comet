@@ -51,7 +51,11 @@ export function Message({ message, user, self = false, ...props }: Props) {
         </>
       )}
       <span className='message__text'>{message.body}</span>
-      <span className='message__time'>{moment(message.createdAt).format('kk:mm')}</span>
+      <span className='message__time'>
+        {moment(message.createdAt)
+          .add({ h: 3 })
+          .format('hh:mm a')}
+      </span>
     </div>
   );
 }
