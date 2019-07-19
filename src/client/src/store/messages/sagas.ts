@@ -1,9 +1,9 @@
-import { takeEvery, put, call, all } from 'redux-saga/effects';
+import { takeEvery, put, call, all, takeLeading } from 'redux-saga/effects';
 
-import { fetchMessages } from './routines';
 import { MessageType } from '~../../shared/types/message.interface';
-import { SendMessage } from './types';
 import { messageService } from '~services/messages.service';
+import { SendMessage, DeleteMessage, PatchMessage } from './types';
+import { fetchMessages } from './routines';
 
 function* requestMessages() {
   try {
@@ -37,6 +37,39 @@ function* watchSendMessage() {
   yield takeEvery('SEND_MESSAGE', sendMessage);
 }
 
+function* deleteMessage(action: DeleteMessage) {
+  try {
+    yield call(messageService.deleteMessage, action.payload.id);
+
+    yield put(fetchMessages({ soft: true }));
+  } catch (err) {
+    throw err;
+  }
+}
+
+function* watchDeleteMessage() {
+  yield takeLeading('DELETE_MESSAGE', deleteMessage);
+}
+
+function* patchMessage(action: PatchMessage) {
+  try {
+    yield call(messageService.patchMessage, action.payload.id, action.payload.text);
+
+    yield put(fetchMessages({ soft: true }));
+  } catch (err) {
+    throw err;
+  }
+}
+
+function* watchPatchMessage() {
+  yield takeEvery('PATCH_MESSAGE', patchMessage);
+}
+
 export const messagesSagas = function*() {
-  yield all([watchMessagesRequest(), watchSendMessage()]);
+  yield all([
+    watchMessagesRequest(),
+    watchSendMessage(),
+    watchDeleteMessage(),
+    watchPatchMessage(),
+  ]);
 };

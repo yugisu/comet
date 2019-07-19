@@ -26,8 +26,15 @@ const getOneById = async (id: number): Promise<MessageType> => {
 const send = async (text: string): Promise<MessageType> =>
   await API.sendData('/api/messages', { text });
 
+const deleteMessage = async (id: number) => await API.deleteData(`/api/messages/${id}`);
+
+const patchMessage = async (id: number, text: string): Promise<MessageType> =>
+  await API.patchData(`/api/messages/${id}`, { text });
+
 export const messageService = {
   getAll,
   getOneById,
   send,
+  deleteMessage,
+  patchMessage,
 };

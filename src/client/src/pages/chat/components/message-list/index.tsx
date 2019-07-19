@@ -24,7 +24,7 @@ export function MessageList(props: Props) {
   const currentUser = useSelector(selectCurrentUsername);
 
   const dispatch = useDispatch();
-  const actions = bindActionCreators({ likeMessage, deleteMessage }, dispatch);
+  const a = bindActionCreators({ likeMessage, deleteMessage }, dispatch);
 
   const scrollRef = useAutoScroll(messages.length);
 
@@ -40,8 +40,7 @@ export function MessageList(props: Props) {
           user={messageSender}
           self={currentUser === m.username}
           key={`message-${m.id}`}
-          onDelete={() => {}}
-          onEditing={() => {}}
+          onDelete={() => a.deleteMessage(m.id)}
           onLike={() => {}}
         />,
       ];

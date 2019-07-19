@@ -1,10 +1,10 @@
 import { MessageType } from '~../../shared/types/message.interface';
-import { MessagesAction, SendMessage } from './types';
+import { MessagesAction, SendMessage, PatchMessage } from './types';
 
 export const sendMessage = (text: string): SendMessage => ({
   type: 'SEND_MESSAGE',
-  payload: {text}
-})
+  payload: { text },
+});
 
 export const addMessage = (message: MessageType): MessagesAction => {
   return {
@@ -13,9 +13,14 @@ export const addMessage = (message: MessageType): MessagesAction => {
   };
 };
 
-export const editMessage = (id: number, message: string): MessagesAction => ({
+export const patchMessage = (id: number, text: string): PatchMessage => ({
+  type: 'PATCH_MESSAGE',
+  payload: { id, text },
+});
+
+export const editMessage = (message: MessageType): MessagesAction => ({
   type: 'EDIT_MESSAGE',
-  payload: { id, message },
+  payload: { message },
 });
 
 export const likeMessage = (id: number): MessagesAction => ({

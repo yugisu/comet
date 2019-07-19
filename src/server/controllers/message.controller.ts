@@ -69,10 +69,10 @@ class UserController {
   static editMessage = async (req: Request, res: Response) => {
     const { username } = res.locals.jwtPayload;
     const id = req.params.id;
+    const { text } = req.body;
 
     const messageRepository = getRepository(Message);
 
-    const { text } = req.body;
     const message = await messageRepository.findOne(id, { where: { username } });
 
     if (!message) {
@@ -80,10 +80,17 @@ class UserController {
       return;
     }
 
+    console.log('Pre:', message.body, message.id, id);
     message.body = text;
+    console.log('After:', message.body, message.id);
 
     await messageRepository.save(message);
-    res.status(204).send();
+
+    const messageToSend = await messageRepository.findOne(id, {
+      loadRelationIds: { relations: ['username'] },
+    });
+
+    res.send(messageToSend);
   };
 
   static deleteMessage = async (req: Request, res: Response) => {

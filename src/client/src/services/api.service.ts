@@ -39,7 +39,38 @@ const sendData = (
   return axios.post(url, data, settings);
 };
 
+const deleteData = (
+  endpoint: string,
+  settings: AxiosRequestConfig = {}
+): Promise<any> => {
+  const url = API_ROOT + endpoint;
+
+  const token = getJWT();
+  if (token) {
+    settings.headers = { ...settings.headers, auth: token };
+  }
+
+  return axios.delete(url, settings);
+};
+
+const patchData = (
+  endpoint: string,
+  data: object,
+  settings: AxiosRequestConfig = {}
+): Promise<any> => {
+  const url = API_ROOT + endpoint;
+
+  const token = getJWT();
+  if (token) {
+    settings.headers = { ...settings.headers, auth: token };
+  }
+
+  return axios.patch(url, data, settings);
+};
+
 export const API = {
   getData,
   sendData,
+  deleteData,
+  patchData,
 };

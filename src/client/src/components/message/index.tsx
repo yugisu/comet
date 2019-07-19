@@ -5,13 +5,13 @@ import { MessageType } from '~../../shared/types/message.interface';
 import { UserType } from '~../../shared/types/user.interface';
 
 import './style.scss';
+import { Link } from 'react-router-dom';
 
 type Props = {
   message: MessageType;
   user: UserType;
   self: boolean;
   onDelete: (id: number) => void;
-  onEditing: (msg: MessageType) => void;
   onLike: (id: number) => void;
 };
 
@@ -21,11 +21,11 @@ export function Message({ message, user, self = false, ...props }: Props) {
       <div className='message__tooltip'>
         {self ? (
           <>
-            <button onClick={() => props.onEditing(message)}>
+            <Link to={`/chat/edit/${message.id}`} role='button'>
               <span role='img' aria-label='Edit message'>
                 ✏️️
               </span>
-            </button>
+            </Link>
             <button onClick={() => props.onDelete(message.id)}>
               <span role='img' aria-label='Delete message'>
                 🗑️

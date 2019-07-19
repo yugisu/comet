@@ -23,8 +23,8 @@ export function App() {
             <Route path='/' exact>
               <Redirect to='/auth' />
             </Route>
-            <Route path='/chat'>{isAuth ? <Chat /> : <Redirect to='/auth' />}</Route>
             <Route path='/auth'>{isAuth ? <Redirect to='/chat' /> : <Auth />}</Route>
+            <Route path='*'>{isAuth ? <Chat /> : <Redirect to='/auth' />}</Route>
           </Switch>
         </Router>
       </ErrorBoundary>

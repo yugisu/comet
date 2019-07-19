@@ -32,12 +32,14 @@
     opacity: 0;
     transition: opacity 0.16s 0.16s;
 
-    > button {
+    > button,
+    a {
       margin: 0.2rem;
       padding: 0;
 
-      background: transparent;
+      text-decoration: none;
 
+      background: transparent;
       cursor: pointer;
       border: none;
       border-radius: 50%;

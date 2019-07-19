@@ -50,15 +50,15 @@ type AddMessage = {
 export type PatchMessage = {
   type: 'PATCH_MESSAGE';
   payload: {
-    message: MessageType;
+    id: number;
+    text: string;
   };
 };
 
 type EditMessage = {
   type: 'EDIT_MESSAGE';
   payload: {
-    id: number;
-    message: string;
+    message: MessageType;
   };
 };
 
@@ -69,7 +69,7 @@ type LikeMessage = {
   };
 };
 
-type DeleteMessage = {
+export type DeleteMessage = {
   type: 'DELETE_MESSAGE';
   payload: {
     id: number;
