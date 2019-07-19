@@ -1,5 +1,10 @@
 import { MessageType } from '~../../shared/types/message.interface';
-import { MessagesAction } from './types';
+import { MessagesAction, SendMessage } from './types';
+
+export const sendMessage = (text: string): SendMessage => ({
+  type: 'SEND_MESSAGE',
+  payload: {text}
+})
 
 export const addMessage = (message: MessageType): MessagesAction => {
   return {

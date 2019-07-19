@@ -14,9 +14,11 @@ export const messages: Reducer<MessagesState, MessagesAction> = (
 ) => {
   switch (action.type) {
     case 'GET_MESSAGES/TRIGGER':
+      const loading = action.payload ? !action.payload.soft : true;
+
       return {
         ...state,
-        loading: true,
+        loading,
         error: null,
       };
 

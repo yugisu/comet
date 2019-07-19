@@ -8,6 +8,7 @@ export type MessagesState = {
 
 type GetMessagesTrigger = {
   type: 'GET_MESSAGES/TRIGGER';
+  payload?: { soft: boolean };
 };
 
 type GetMessagesRequest = {

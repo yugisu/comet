@@ -1,8 +1,7 @@
 import React, { FormEvent, useState, ChangeEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import { addMessage } from '~store/messages/actions';
-import { StoreState } from '~store/types';
+import { sendMessage } from '~store/messages/actions';
 
 import './style.scss';
 
@@ -11,9 +10,10 @@ type Props = {};
 export function MessageInput(props: Props) {
   const [message, setMessage] = useState('');
   const dispatch = useDispatch();
-  const currentUser = useSelector(({ chat }: StoreState) => chat.currentUser);
 
-  const sendMessage = (message: string) => dispatch(addMessage(currentUser, message));
+  const onSendMessage = (text: string) => {
+    dispatch(sendMessage(text));
+  };
 
   const onChange = (e: ChangeEvent) => {
     let newMessage = (e.target as HTMLInputElement).value;
@@ -29,7 +29,7 @@ export function MessageInput(props: Props) {
     e.preventDefault();
 
     if (message) {
-      sendMessage(message);
+      onSendMessage(message);
       setMessage('');
     }
   };

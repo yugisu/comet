@@ -4,7 +4,6 @@ import { fetchMessages } from './routines';
 import { MessageType } from '~../../shared/types/message.interface';
 import { SendMessage } from './types';
 import { messageService } from '~services/messages.service';
-import { addMessage } from './actions';
 
 function* requestMessages() {
   try {
@@ -26,9 +25,9 @@ const watchMessagesRequest = function*() {
 
 function* sendMessage(action: SendMessage) {
   try {
-    const newMessage: MessageType = yield call(messageService.send, action.payload.text);
+    yield call(messageService.send, action.payload.text);
 
-    yield put(addMessage(newMessage));
+    yield put(fetchMessages({ soft: true }));
   } catch (err) {
     throw err;
   }

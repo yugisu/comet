@@ -55,7 +55,11 @@ class UserController {
     newMessage.username = username;
 
     try {
-      const message = await messageRepository.save(newMessage);
+      const { id } = await messageRepository.save(newMessage);
+      const message = await messageRepository.findOne(id, {
+        loadRelationIds: { relations: ['username'] },
+      });
+
       res.send(message);
     } catch (err) {
       res.status(500).send(err);

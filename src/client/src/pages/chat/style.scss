@@ -6,11 +6,13 @@
 
     display: grid;
     grid:
-      'message-list' 1fr
-      'message-input' auto;
+      'message-list' 35.6rem
+      'message-input' 4rem;
 
     > .message-list {
       grid-area: message-list;
+
+      overflow-y: auto;
     }
 
     > .message-input {
